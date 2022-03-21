@@ -1,5 +1,6 @@
 # Integrantes 
--Soraya Lizeth Ortiz Hernandez  - 20070000965
--Ana Julissa Raudales Chaver    - 20161006105
--Carlos Saul Suazo Sosa         - 20161003017
--Gerson Eliezer Rivera Rosales  - 20171032850
+-Soraya Lizeth Ortiz Hernandez      - 20070000965
+-Christian Omar Bustillo Rodriguez  - 20151004709 
+-Ana Julissa Raudales Chaver        - 20161006105
+-Carlos Saul Suazo Sosa             - 20161003017
+-Gerson Eliezer Rivera Rosales      - 20171032850
