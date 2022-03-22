@@ -1,0 +1,61 @@
+<lenguaje>::= <bloque_instrucciones>
+
+<bloque_instrucciones>::= <instrucciones>|<instrucciones><bloque_instrucciones>
+
+<instrucciones>::= <expresion_simple>
+				|<seleccion_simple>
+				|<seleccion_doble>
+				|<seleccion_multiple>
+				|<do_while>
+				|<while>
+				|<for>
+        |<funcion>
+
+<expresion_simple>::= <termino><operador_aritmetico><termino>
+                 		|<asignacion>
+                  	|<condicion>
+
+<condicion>::= <propocicion_primitiva> <propocicion_primitiva><operadores_logicos><condicion>
+
+<seleccion_simple>::= if(<condicion>) {<bloque_instrucciones>}
+
+<seleccion_doble>::=  if(<condicion>)<bloque_instrucciones> else {<bloque_instrucciones>}
+
+<do_while>::= do{<bloque_instrucciones>}while(<condicion>){<bloque_instrucciones>}
+
+<while>::= while(<condicion>){<bloque_instrucion>}
+
+<for>::= for(<asignacion>,<condicion>,<asignacion>){<bloque_instrucciones>}
+
+<definicion_funcion>::= def <identificador>
+
+<lista_parametros>::= <termino>|<constate>,<constante>
+
+<funcion>::= <definicion_funcion>(<lista_parametros>){<bloque_instrucciones>}
+
+<cadena>::= <letras>|<letras><cadena>
+
+<numeros>::= <digitos>|<digitos><numeros>
+
+<identificador>::= <cadena>|<cadena><numeros>
+
+<asignacion>::=<identificador><operador_asignacion><termino>
+
+<operador_comparacion>::= "==" |equals <operadores_desigualdad>
+
+<termino>::=<numeros>|<cadena>|<identificador>
+
+<propocion_primitiva>::= <termino><operador_comparacion><termino>
+
+<letras>::= "a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"|"n"|"ñ"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z"
+           	"A"|"B"|"C"|"D"|"E"|"F"|"G"|"H"|"I"|"J"|"K"|"L"|"M"|"N"|"Ñ"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"
+
+<digitos>::= "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"
+
+<operador_aritmetico>::= "+" | "-" | "*" | "/"
+
+<operador_asignacion>::= "==" 
+
+<operadores_logicos>::= and|or|nor|xor
+
+<operadores_desigualdad>::=  ">" | "<" | ">=" | "<="
