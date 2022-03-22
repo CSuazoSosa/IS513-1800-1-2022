@@ -9,11 +9,11 @@
 				|<do_while>
 				|<while>
 				|<for>
-        |<funcion>
+        			|<funcion>
 
 <expresion_simple>::= <termino><operador_aritmetico><termino>
                  		|<asignacion>
-                  	|<condicion>
+                  		|<condicion>
 
 <condicion>::= <propocicion_primitiva> <propocicion_primitiva><operadores_logicos><condicion>
 
