@@ -1,0 +1,26 @@
+
+Main(){
+	declararVariables()
+	entradaCadenas()
+	unirCadenas()
+	salidaCadena()
+}
+
+declararVariables(){
+	cadena1
+	cadena2
+	cadenaResultante
+}
+
+entradaCadenas(){
+	cadena1="Uno"
+	cadena2="Dos"	
+}
+
+unirCadenas(){
+	cadenaResultante=cadena1 + cadena2
+}
+
+salidaCadena(){
+	cadenaResultante="UnoDos"
+}

@@ -9,6 +9,7 @@
 				|<do_while>
 				|<while>
 				|<for>
+				|<array>
         |<funcion>
 
 <expresion_simple>::= <termino><operador_aritmetico><termino>
@@ -32,6 +33,8 @@
 <lista_parametros>::= <termino>|<constate>,<constante>
 
 <funcion>::= <definicion_funcion>(<lista_parametros>){<bloque_instrucciones>}
+
+<array>::= INICIO(<cadena>|<numeros>)
 
 <cadena>::= <letras>|<letras><cadena>
 
