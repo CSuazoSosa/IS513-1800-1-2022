@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+char cadena[500] = "", newCadena[20];
+int size = 2;
+
+
+void entradaCadenas() {
+    
+    while( size > 1){
+        cout << "\nFavor Ingresar una Palabra: ";
+        fgets(newCadena, 20, stdin);
+        
+        size=0; while(newCadena[size]!='\0') size++;
+        strcat( cadena, newCadena);
+    }
+}
+
+char salidaCadena() {
+    cout<< cadena;
+}
+
+int main() {
+    
+    //declararVariables();
+	entradaCadenas();
+	//unirCadenas();
+	salidaCadena();
+  
+    return 0;
+}
