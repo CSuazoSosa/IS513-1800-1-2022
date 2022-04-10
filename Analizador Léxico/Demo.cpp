@@ -2,11 +2,11 @@ void lectura(); //Funcion de Leer
 void escribir();//Funcion de Escribir
 void conteo();
 char cadena[100];
-int indice,base,contador=0,leerCaracteres=0;
+int indice,base,l,contador=0,leerCaracteres=0;
 int main(){
-	//lectura();
+	lectura();
 	conteo();
-	//escribir();
+	escribir();
 	system("pause");
 	return 0;
 }
