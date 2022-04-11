@@ -1,11 +1,12 @@
+#include <stdio.h>
 
 char c[100];
 int i=0, x=0 , h=0, d=0,y=0, r=0;
-//x= Vocales
-//h = Numeros
-//d= Espaciosafdga
-// y = simbolos
-// r = restante
+x= Vocales
+h = Numeros
+d= Espaciosafdga
+y = simbolos
+r = restante
 void contar();
 int main(void){
 	contar();
