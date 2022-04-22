@@ -73,41 +73,37 @@ void contar()
 	system("pause");
 }
 
-int main()
-{
-
-	// Funciones a Crear
-
-	void automata(FILE * archivo, Lista * lista_tokens);
-		char caracter;
-    		estado_actual = ESTADO_NINGUNO;
-    		unsigned contador_lineas = 1;
-    		Lista *buffer = (Lista*)malloc(sizeof(Lista));
-    		inicializarLista(buffer,INT);
+//Autómata
+void automata(FILE * archivo, Lista * lista_tokens);
+	char caracter;
+    	estado_actual = ESTADO_NINGUNO;
+   	unsigned contador_lineas = 1;
+    	Lista *buffer = (Lista*)malloc(sizeof(Lista));
+    	inicializarLista(buffer,INT);
 	
-		while ((caracter = fgetc(fichero))!=EOF)
-	    	{
-		if(caracter=='\n')
-		    contador_lineas++;
-		switch (estado_actual)
-		{
+	while ((caracter = fgetc(archivo))!=EOF)
+    	{
+	if(caracter=='\n')
+	contador_lineas++;
+	switch (estado_actual)
+	{
 				
 		case ESTADO_NINGUNO:
-		    if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
+		if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
 			estado_actual = ESTADO_NINGUNO;
-		    }
-		    else{
-			if(comprobarCaracter(caracter)){
-			    estado_actual=ESTADO_CADENA;
-			    insertarUltimo(buffer,&caracter);
-			}else{
-			    if(comprobarNumero(caracter)){
-				estado_actual=ESTADO_NUMERO;
-				insertarUltimo(buffer,&caracter);
-			    }
+		}
+		else{
+		if(comprobarCaracter(caracter)){
+			estado_actual=ESTADO_CADENA;
+			insertarUltimo(buffer,&caracter);
+		}else{
+		if(comprobarNumero(caracter)){
+			estado_actual=ESTADO_NUMERO;
+			insertarUltimo(buffer,&caracter);
 			}
 		    }
-		    break;
+		}
+		break;
 		
 		case ESTADO_CADENA:
 		    if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
@@ -134,7 +130,10 @@ int main()
 		    }
 
 		    break;
-	
+
+int main()
+{
+	automata(archivo,lista_tokens);
 	// bool comprobarCaracter(char caracter);
 	// bool comprobarNumero(char numero);
 	// char *obtenerAtributo(Lista * lista);
