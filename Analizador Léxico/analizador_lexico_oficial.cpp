@@ -78,7 +78,63 @@ int main()
 
 	// Funciones a Crear
 
-	// void automata(FILE * fichero, Lista * lista_tokens);
+	void automata(FILE * archivo, Lista * lista_tokens);
+		char caracter;
+    		estado_actual = ESTADO_NINGUNO;
+    		unsigned contador_lineas = 1;
+    		Lista *buffer = (Lista*)malloc(sizeof(Lista));
+    		inicializarLista(buffer,INT);
+	
+		while ((caracter = fgetc(fichero))!=EOF)
+	    	{
+		if(caracter=='\n')
+		    contador_lineas++;
+		switch (estado_actual)
+		{
+				
+		case ESTADO_NINGUNO:
+		    if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
+			estado_actual = ESTADO_NINGUNO;
+		    }
+		    else{
+			if(comprobarCaracter(caracter)){
+			    estado_actual=ESTADO_CADENA;
+			    insertarUltimo(buffer,&caracter);
+			}else{
+			    if(comprobarNumero(caracter)){
+				estado_actual=ESTADO_NUMERO;
+				insertarUltimo(buffer,&caracter);
+			    }
+			}
+		    }
+		    break;
+		
+		case ESTADO_CADENA:
+		    if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
+			    Token *token = (Token *)malloc(sizeof(Token));
+			token->atributo = obtenerAtributo(buffer);
+			token->tipo_token = IDENTIFICADOR;
+			token->numero_linea = contador_lineas;
+			insertarUltimo(lista_tokens,token);
+			estado_actual = ESTADO_NINGUNO;
+			vaciarLista(buffer);
+		    }else
+		    {
+			if(comprobarCaracter(caracter)){
+			    insertarUltimo(buffer,&caracter);
+			    estado_actual = ESTADO_CADENA;
+			}else
+			{
+			    if(comprobarNumero(caracter)){
+				insertarUltimo(buffer,&caracter);
+				estado_actual=ESTADO_IDENTIFICADOR;
+			    }
+			}
+
+		    }
+
+		    break;
+	
 	// bool comprobarCaracter(char caracter);
 	// bool comprobarNumero(char numero);
 	// char *obtenerAtributo(Lista * lista);
