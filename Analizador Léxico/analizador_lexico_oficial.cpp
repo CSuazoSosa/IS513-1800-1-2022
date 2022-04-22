@@ -75,12 +75,15 @@ void contar()
 
 int main()
 {
-	void automata(FILE * fichero, Lista * lista_tokens);
-	bool comprobarCaracter(char caracter);
-	bool comprobarNumero(char numero);
-	char *obtenerAtributo(Lista * lista);
-	void presentacion(Lista * lista_tokens);
-	char *tipoToken(Token * token);
+
+	// Funciones a Crear
+
+	// void automata(FILE * fichero, Lista * lista_tokens);
+	// bool comprobarCaracter(char caracter);
+	// bool comprobarNumero(char numero);
+	// char *obtenerAtributo(Lista * lista);
+	// void presentacion(Lista * lista_tokens);
+	// char *tipoToken(Token * token);
 	lectura()
 			contar();
 	return 0;
