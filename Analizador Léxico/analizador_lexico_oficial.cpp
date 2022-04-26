@@ -185,9 +185,39 @@ while ((caracter = fgetc(archivo)) != EOF)
 		{
 			automata(archivo, lista_tokens);
 
-			// void presentacion(Lista * lista_tokens);
-			// char *tipoToken(Token * token);
+			void presentacion(Lista * lista_tokens);
+			char *tipoToken(Token * token);
 			lectura()
-					contar();
+			contar();
 			return 0;
 		}
+			
+	
+			
+			
+	void  presentacion(Lista *lista_tokens){
+ 
+    printf("Se tienen los siguientes Tokens \n\n");
+    for(unsigned i = 0; i<(lista_tokens->tamano); i++){
+        Token *token = (Token *)(obtenerPorIndice(lista_tokens,i).Void);
+        printf("Linea %d : %s_<%s> \n\n",token->numero_linea, token->atributo,tipoToken(token));
+    }
+}
+
+char* tipoToken(Token *token){
+  switch (token->tipo_token)
+  {
+  case CADENA:
+    return "cadena";
+    break;
+  case NUMERO:
+    return "numero";
+    break;
+  case IDENTIFICADOR:
+    return "identificador";
+    break;
+  default:
+      break;
+  }
+
+}
