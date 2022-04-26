@@ -73,73 +73,121 @@ void contar()
 	system("pause");
 }
 
-//Autómata
-void automata(FILE * archivo, Lista * lista_tokens);
-	char caracter;
-    	estado_actual = ESTADO_NINGUNO;
-   	unsigned contador_lineas = 1;
-    	Lista *buffer = (Lista*)malloc(sizeof(Lista));
-    	inicializarLista(buffer,INT);
-	
-	while ((caracter = fgetc(archivo))!=EOF)
-    	{
-	if(caracter=='\n')
-	contador_lineas++;
+// Autómata
+void automata(FILE *archivo, Lista *lista_tokens);
+char caracter;
+estado_actual = ESTADO_NINGUNO;
+unsigned contador_lineas = 1;
+Lista *buffer = (Lista *)malloc(sizeof(Lista));
+inicializarLista(buffer, INT);
+
+while ((caracter = fgetc(archivo)) != EOF)
+{
+	if (caracter == '\n')
+		contador_lineas++;
 	switch (estado_actual)
 	{
-				
-		case ESTADO_NINGUNO:
-		if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
+
+	case ESTADO_NINGUNO:
+		if ((caracter == ' ') || (caracter == '\t') || (caracter == '\n'))
+		{
 			estado_actual = ESTADO_NINGUNO;
 		}
-		else{
-		if(comprobarCaracter(caracter)){
-			estado_actual=ESTADO_CADENA;
-			insertarUltimo(buffer,&caracter);
-		}else{
-		if(comprobarNumero(caracter)){
-			estado_actual=ESTADO_NUMERO;
-			insertarUltimo(buffer,&caracter);
+		else
+		{
+			if (comprobarCaracter(caracter))
+			{
+				estado_actual = ESTADO_CADENA;
+				insertarUltimo(buffer, &caracter);
 			}
-		    }
+			else
+			{
+				if (comprobarNumero(caracter))
+				{
+					estado_actual = ESTADO_NUMERO;
+					insertarUltimo(buffer, &caracter);
+				}
+			}
 		}
 		break;
-		
-		case ESTADO_CADENA:
-		    if((caracter == ' ') || (caracter == '\t') || (caracter == '\n') ){
-			    Token *token = (Token *)malloc(sizeof(Token));
+
+	case ESTADO_CADENA:
+		if ((caracter == ' ') || (caracter == '\t') || (caracter == '\n'))
+		{
+			Token *token = (Token *)malloc(sizeof(Token));
 			token->atributo = obtenerAtributo(buffer);
 			token->tipo_token = IDENTIFICADOR;
 			token->numero_linea = contador_lineas;
-			insertarUltimo(lista_tokens,token);
+			insertarUltimo(lista_tokens, token);
 			estado_actual = ESTADO_NINGUNO;
 			vaciarLista(buffer);
-		    }else
-		    {
-			if(comprobarCaracter(caracter)){
-			    insertarUltimo(buffer,&caracter);
-			    estado_actual = ESTADO_CADENA;
-			}else
+		}
+		else
+		{
+			if (comprobarCaracter(caracter))
 			{
-			    if(comprobarNumero(caracter)){
-				insertarUltimo(buffer,&caracter);
-				estado_actual=ESTADO_IDENTIFICADOR;
-			    }
+				insertarUltimo(buffer, &caracter);
+				estado_actual = ESTADO_CADENA;
 			}
+			else
+			{
+				if (comprobarNumero(caracter))
+				{
+					insertarUltimo(buffer, &caracter);
+					estado_actual = ESTADO_IDENTIFICADOR;
+				}
+			}
+		}
 
-		    }
+		break;
 
-		    break;
+		// Funiones para comprobacion de numero o caracter
+		bool comprobarCaracter(char caracter)
+		{
+			if (((int)caracter >= 65) && ((int)caracter <= 90))
+				return true;
+			else
+			{
+				if (((int)caracter >= 97) && ((int)caracter <= 122))
+					return true;
+				else
+					return false;
+			}
+		}
 
-int main()
-{
-	automata(archivo,lista_tokens);
-	// bool comprobarCaracter(char caracter);
-	// bool comprobarNumero(char numero);
-	// char *obtenerAtributo(Lista * lista);
-	// void presentacion(Lista * lista_tokens);
-	// char *tipoToken(Token * token);
-	lectura()
-			contar();
-	return 0;
-}
+		bool comprobarNumero(char numero)
+		{
+			if (((int)numero >= 48) && ((int)numero <= 57))
+				return true;
+			else
+				return false;
+		}
+
+		char *obtenerAtributo(Lista * lista)
+		{
+			char *atributo = (char *)calloc(lista->tamano + 1, sizeof(char));
+			for (unsigned indice = 0; indice <= (lista->tamano); indice++)
+			{
+				if (indice != lista->tamano)
+				{
+					char caracter = (char)(obtenerPorIndice(lista, indice)).Int;
+					*(atributo + indice) = caracter;
+				}
+				else
+				{
+					*(atributo + indice) = '\0';
+				}
+			}
+			return atributo;
+		}
+
+		int main()
+		{
+			automata(archivo, lista_tokens);
+
+			// void presentacion(Lista * lista_tokens);
+			// char *tipoToken(Token * token);
+			lectura()
+					contar();
+			return 0;
+		}
